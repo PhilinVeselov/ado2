@@ -1,0 +1,19 @@
+﻿
+@model string
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form method="post">
+    <label for="message">Сообщение:</label>
+    <input type="text" id="message" name="message" />
+    <button type="submit">Отправить</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model))
+{
+    <p>Полученное сообщение: @Model</p>
+}

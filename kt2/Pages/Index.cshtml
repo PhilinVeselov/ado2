@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Edit Text";
+}
+
+<h1>Редактирование Текста</h1>
+<form method="post">
+    <div class="form-group">
+        <label for="editor">Текст:</label>
+        <textarea id="editor" name="Text" class="form-control">@Model.Text</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
+<script src="https://cdn.tiny.cloud/1/tujv09qnzb247xku9uci5xevu3n8yvstlum9fg00ya5w9aqh/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>tinymce.init({
+        selector: 'textarea',
+        plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | image',
+        height: 500,
+        images_upload_url: '/api/imageupload/upload',
+        automatic_uploads: true
+    });</script>

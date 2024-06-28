@@ -1,49 +1,86 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿/* Переменные для цветов */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #343a40;
+    --link-color: #007bff;
+    --link-hover-color: #0056b3;
 }
 
-a {
-  color: #0077cc;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.navbar {
+    background-color: var(--primary-color);
+    color: #fff;
+    transition: background-color 0.3s ease;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    .navbar .navbar-brand,
+    .navbar .nav-link {
+        color: #fff;
+    }
+
+        .navbar .nav-link:hover {
+            color: var(--link-hover-color);
+        }
+
+    .navbar .active {
+        background-color: var(--secondary-color);
+    }
+
+.container {
+    margin-top: 20px;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+.header,
+.footer {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 0;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
+    .footer a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+        .footer a:hover {
+            color: var(--link-hover-color);
+        }
+
+.main-content {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: var(--primary-color);
+}
+
+p {
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .navbar .navbar-toggler {
+        color: #fff;
+    }
+
+    .main-content {
+        margin-top: 20px;
+    }
+}

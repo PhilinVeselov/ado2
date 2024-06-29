@@ -1,0 +1,44 @@
+﻿@model kt11.Models.EncryptionModel
+
+@{
+    ViewData["Title"] = "Encryption";
+}
+
+<h1>Encryption</h1>
+
+<form method="post" asp-action="AesEncrypt">
+    <div class="form-group">
+        <label for="PlainText">Plain Text</label>
+        <input type="text" class="form-control" id="PlainText" name="PlainText" value="@Model.PlainText" />
+    </div>
+    <button type="submit" class="btn btn-primary">AES Encrypt</button>
+</form>
+
+<form method="post" asp-action="AesDecrypt">
+    <div class="form-group">
+        <label for="EncryptedText">Encrypted Text</label>
+        <input type="text" class="form-control" id="EncryptedText" name="EncryptedText" value="@Model.EncryptedText" />
+    </div>
+    <button type="submit" class="btn btn-primary">AES Decrypt</button>
+</form>
+
+<form method="post" asp-action="LibsodiumEncrypt">
+    <div class="form-group">
+        <label for="PlainText">Plain Text</label>
+        <input type="text" class="form-control" id="PlainText" name="PlainText" value="@Model.PlainText" />
+    </div>
+    <button type="submit" class="btn btn-primary">Libsodium Encrypt</button>
+</form>
+
+<form method="post" asp-action="LibsodiumDecrypt">
+    <div class="form-group">
+        <label for="EncryptedText">Encrypted Text</label>
+        <input type="text" class="form-control" id="EncryptedText" name="EncryptedText" value="@Model.EncryptedText" />
+    </div>
+    <button type="submit" class="btn btn-primary">Libsodium Decrypt</button>
+</form>
+
+<div>
+    <h3>Decrypted Text</h3>
+    <p>@Model.DecryptedText</p>
+</div>

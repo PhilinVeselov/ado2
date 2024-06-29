@@ -1,0 +1,48 @@
+﻿@model kt8.Models.EncryptionViewModel
+@{
+    ViewData["Title"] = "Encryption Result";
+}
+
+<h1>Encryption Result</h1>
+
+<div>
+    <h2>Encrypted Text</h2>
+    <textarea>@Model.EncryptedText</textarea>
+</div>
+<div>
+    <h2>Key</h2>
+    <textarea>@Model.Key</textarea>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.PublicKey))
+{
+    <div>
+        <h2>Public Key</h2>
+        <textarea>@Model.PublicKey</textarea>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.PrivateKey))
+{
+    <div>
+        <h2>Private Key</h2>
+        <textarea>@Model.PrivateKey</textarea>
+    </div>
+}
+
+<form asp-action="Decrypt" method="post">
+    <input type="hidden" name="EncryptedText" value="@Model.EncryptedText" />
+    <input type="hidden" name="Key" value="@Model.Key" />
+    <input type="hidden" name="Algorithm" value="@Model.Algorithm" />
+    <input type="hidden" name="PublicKey" value="@Model.PublicKey" />
+    <input type="hidden" name="PrivateKey" value="@Model.PrivateKey" />
+    <button type="submit">Decrypt</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.DecryptedText))
+{
+    <div>
+        <h2>Decrypted Text</h2>
+        <textarea>@Model.DecryptedText</textarea>
+    </div>
+}

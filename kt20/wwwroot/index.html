@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.18/signalr.min.js"></script>
+</head>
+<body>
+    <h1>Secure Chat</h1>
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username">
+    </div>
+    <div>
+        <label for="message">Message:</label>
+        <input type="text" id="message" placeholder="Enter your message">
+    </div>
+    <button id="sendButton">Send</button>
+    <div id="messagesList"></div>
+
+    <script> const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdHVzZXIiLCJuYmYiOjE3MTk2MjQ0MTEsImV4cCI6MTcyMDIyOTIxMSwiaWF0IjoxNzE5NjI0NDExfQ.y-Axo5Ty1nW2b0U6VpwNEvTJvPXRS_2W1OKPInIstSg';
+
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub", { accessTokenFactory: () => token })
+            .build();
+
+        connection.on("ReceiveMessage", (user, message) => {
+            const msg = document.createElement('div');
+            msg.textContent = `${user}: ${message}`;
+            document.getElementById('messagesList').appendChild(msg);
+        });
+
+        connection.start().then(() => {
+            document.getElementById('sendButton').disabled = false;
+        }).catch(err => console.error(err.toString()));
+
+        document.getElementById('sendButton').addEventListener('click', () => {
+            const user = document.getElementById('username').value;
+            const message = document.getElementById('message').value;
+            connection.invoke("SendMessage", user, message).catch(err => console.error(err.toString()));
+        });</script>
+</body>
+</html>

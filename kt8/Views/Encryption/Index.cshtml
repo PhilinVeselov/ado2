@@ -1,0 +1,21 @@
+﻿@model kt8.Models.EncryptionViewModel
+@{
+    ViewData["Title"] = "Encrypt Text";
+}
+
+<h1>Encrypt Text</h1>
+
+<form asp-action="Encrypt" method="post">
+    <div>
+        <label for="PlainText">Text to encrypt:</label>
+        <input type="text" id="PlainText" name="PlainText" value="@Model.PlainText" />
+    </div>
+    <div>
+        <label for="Algorithm">Encryption Algorithm:</label>
+        <select id="Algorithm" name="Algorithm">
+            <option value="aes">AES</option>
+            <option value="rsa">RSA</option>
+        </select>
+    </div>
+    <button type="submit">Encrypt</button>
+</form>
